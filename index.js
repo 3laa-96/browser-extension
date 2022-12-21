@@ -1,9 +1,15 @@
-// Defined variables
+// defined variables
 let myLeads = [];
 const savedText = document.getElementById("saved-text");
 const inputEl = document.getElementById("input-el");
 const saveBtn = document.getElementById("save-btn");
 saveBtn.addEventListener("click", function save() {
+  render();
+  document.getElementById("input-el").value = "";
+});
+
+// Render text function
+function render() {
   if (inputEl.value === "") {
     alert("No input detected !");
   } else {
@@ -15,6 +21,4 @@ saveBtn.addEventListener("click", function save() {
       myLeads.shift();
     });
   }
-
-  document.getElementById("input-el").value = "";
-});
+}
