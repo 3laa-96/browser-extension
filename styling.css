@@ -25,6 +25,12 @@ body {
     cursor: pointer;
 }
 
+#save-btn:active {
+    background-color: white;
+    color: #5f9341;
+
+}
+
 #saved-text {
 
     width: 100%;
