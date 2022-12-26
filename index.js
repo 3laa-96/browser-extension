@@ -3,30 +3,29 @@ let myLeads = [];
 const savedText = document.getElementById("saved-text");
 const inputEl = document.getElementById("input-el");
 const saveBtn = document.getElementById("save-btn");
+let leadsFromLocalStorage = JSON.parse(localStorage.getItem("savedLinks"));
 
 // Save Button
 saveBtn.addEventListener("click", function save() {
-  myLeads.push(inputEl.value);
-  localStorage.setItem("savedLinks", JSON.stringify(myLeads));
-  render();
-  inputEl.value = "";
-  // localStorage.getItem("savedLinks", JSON.parse(myLeads));
+  if (inputEl.value) {
+    inputEl.placeholder = "";
+    document.getElementById("input-el").style.border = "solid 1px black";
+    render();
+    inputEl.value = "";
+    localStorage.setItem("savedLinks", JSON.stringify(myLeads));
+  } else {
+    inputEl.placeholder = "No input detected !";
+    document.getElementById("input-el").style.border = "solid 1px red";
+  }
 });
 
 // Render text function
 function render() {
-  if (inputEl.value === "") {
-    // inputEl.placeholder = "No input detected !"; WIP
-    alert("No input detected");
-  } else {
-    myLeads.forEach(function (link, index) {
-      myLeads[index] = myLeads; //WIP
-      const li = document.createElement("li");
-      li.innerHTML = `<a href="https://${link}" target="_blank">${link}</a>`;
-      savedText.appendChild(li);
-      // myLeads.pop();
-    });
-  }
+  myLeads.push(inputEl.value);
+  let link = inputEl.value;
+  const li = document.createElement("li");
+  li.innerHTML = `<a href="https://${link}" target="_blank">${link}</a>`;
+  savedText.appendChild(li);
 }
 
 // 6:10:10
