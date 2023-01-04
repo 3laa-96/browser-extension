@@ -3,6 +3,8 @@ let myLeads = [];
 const savedText = document.getElementById("saved-text");
 const inputEl = document.getElementById("input-el");
 const saveBtn = document.getElementById("save-btn");
+
+// rendering out saved links/leads
 let leadsFromLocalStorage = JSON.parse(localStorage.getItem("savedLinks"));
 
 // Save Button
@@ -22,10 +24,10 @@ saveBtn.addEventListener("click", function save() {
 // Render text function
 function render() {
   myLeads.push(inputEl.value);
-  let link = inputEl.value;
-  const li = document.createElement("li");
-  li.innerHTML = `<a href="https://${link}" target="_blank">${link}</a>`;
-  savedText.appendChild(li);
+  savedText.innerHTML = "";
+  myLeads.forEach(function (link) {
+    const li = document.createElement("li");
+    li.innerHTML = `<a href="https://${link}" target="_blank">${link}</a>`;
+    savedText.appendChild(li);
+  });
 }
-
-// 6:10:10
