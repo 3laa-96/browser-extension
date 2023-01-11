@@ -6,12 +6,17 @@ const saveBtn = document.getElementById("save-btn");
 
 // rendering out saved links/leads
 let leadsFromLocalStorage = JSON.parse(localStorage.getItem("savedLinks"));
+if (leadsFromLocalStorage) {
+  myLeads = leadsFromLocalStorage;
+  render();
+}
 
 // Save Button
 saveBtn.addEventListener("click", function save() {
   if (inputEl.value) {
     inputEl.placeholder = "";
     document.getElementById("input-el").style.border = "solid 1px black";
+    myLeads.push(inputEl.value);
     render();
     inputEl.value = "";
     localStorage.setItem("savedLinks", JSON.stringify(myLeads));
@@ -23,7 +28,6 @@ saveBtn.addEventListener("click", function save() {
 
 // Render text function
 function render() {
-  myLeads.push(inputEl.value);
   savedText.innerHTML = "";
   myLeads.forEach(function (link) {
     const li = document.createElement("li");
