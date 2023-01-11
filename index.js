@@ -1,11 +1,12 @@
 // defined variables
 let myLeads = [];
-const savedText = document.getElementById("saved-text");
 const inputEl = document.getElementById("input-el");
 const saveBtn = document.getElementById("save-btn");
+const deleteAllBtn = document.getElementById("delete-all");
+const savedText = document.getElementById("saved-text");
 
 // rendering out saved links/leads
-let leadsFromLocalStorage = JSON.parse(localStorage.getItem("savedLinks"));
+const leadsFromLocalStorage = JSON.parse(localStorage.getItem("savedLinks"));
 if (leadsFromLocalStorage) {
   myLeads = leadsFromLocalStorage;
   render();
@@ -23,6 +24,15 @@ saveBtn.addEventListener("click", function save() {
   } else {
     inputEl.placeholder = "No input detected !";
     document.getElementById("input-el").style.border = "solid 1px red";
+  }
+});
+
+// delete all button
+deleteAllBtn.addEventListener("click", function deleteLocalStorage() {
+  if (savedText) {
+    savedText.innerHTML = "";
+    localStorage.clear();
+    myLeads = [];
   }
 });
 
