@@ -1,11 +1,12 @@
-// defined variables
+// Defined variables
 let myLeads = [];
 const inputEl = document.getElementById("input-el");
 const saveBtn = document.getElementById("save-btn");
+const tabBtn = document.getElementById("tab-btn");
 const deleteAllBtn = document.getElementById("delete-all");
 const savedText = document.getElementById("saved-text");
 
-// rendering out saved links/leads
+// Rendering out saved links/leads
 const leadsFromLocalStorage = JSON.parse(localStorage.getItem("savedLinks"));
 if (leadsFromLocalStorage) {
   myLeads = leadsFromLocalStorage;
@@ -27,7 +28,16 @@ saveBtn.addEventListener("click", function save() {
   }
 });
 
-// delete all button
+// Save Tab Button
+tabBtn.addEventListener("click", function () {
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    myLeads.push(tabs[0].url);
+    localStorage.setItem("savedLinks", JSON.stringify(myLeads));
+    render();
+  });
+});
+
+// Delete all button
 deleteAllBtn.addEventListener("click", function deleteLocalStorage() {
   if (savedText) {
     savedText.innerHTML = "";
