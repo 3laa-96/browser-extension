@@ -77,4 +77,6 @@ button:hover {
 
 #saved-text a {
     color: #5f9341;
+    overflow: hidden;
+    white-space: nowrap;
 }

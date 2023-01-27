@@ -5,6 +5,7 @@ const saveBtn = document.getElementById("save-btn");
 const tabBtn = document.getElementById("tab-btn");
 const deleteAllBtn = document.getElementById("delete-all");
 const savedText = document.getElementById("saved-text");
+const deleteBtn = document.getElementById("delete-btn");
 
 // Rendering out saved links/leads
 const leadsFromLocalStorage = JSON.parse(localStorage.getItem("savedLinks"));
@@ -38,7 +39,7 @@ tabBtn.addEventListener("click", function () {
 });
 
 // Delete all button
-deleteAllBtn.addEventListener("click", function deleteLocalStorage() {
+deleteAllBtn.addEventListener("click", function () {
   if (savedText) {
     savedText.innerHTML = "";
     localStorage.clear();
@@ -46,12 +47,17 @@ deleteAllBtn.addEventListener("click", function deleteLocalStorage() {
   }
 });
 
+// Delete button
+// deleteBtn.addEventListener("click", function () {
+
+// });
+
 // Render text function
 function render() {
   savedText.innerHTML = "";
   myLeads.forEach(function (link) {
     const li = document.createElement("li");
-    li.innerHTML = `<a href="https://${link}" target="_blank">${link}</a>`;
+    li.innerHTML = `<a href="https://${link}" target="_blank">${link}</a><button id="delete-btn" style="margin-left:10px">Delete</button>`;
     savedText.appendChild(li);
   });
 }
